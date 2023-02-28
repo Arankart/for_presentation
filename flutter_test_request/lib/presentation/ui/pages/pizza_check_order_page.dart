@@ -53,23 +53,26 @@ class _PizzaChekOrderPageWrapperState extends State<PizzaChekOrderPageWrapper> {
   @override
   Widget build(BuildContext context) {
     if (_secondsWait < 3) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              "Идёт проверка данных",
-              style: titlteStyle,
-            ),
-            // Text("$_secondsWait"),
-            SizedBox(
-              height: 16,
-            ),
-            CircularProgressIndicator(
-              color: primeryColor,
-            ),
-          ],
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Идёт проверка данных",
+                style: titlteStyle,
+              ),
+              // Text("$_secondsWait"),
+              SizedBox(
+                height: 16,
+              ),
+              CircularProgressIndicator(
+                color: primeryColor,
+              ),
+            ],
+          ),
         ),
       );
     } else {
@@ -91,7 +94,7 @@ class _PizzaChekOrderPageWrapperState extends State<PizzaChekOrderPageWrapper> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "Зыказ успешно оплачен!",
+              "Заказ успешно оплачен!",
               style: titlteStyle,
             ),
             SizedBox(
