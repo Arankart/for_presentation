@@ -100,7 +100,7 @@ class _PizzaWidgetState extends State<PizzaWidget> {
           height: 48,
         ),
         PizzaListWidget(bagRepository: widget.bagRepository),
-        Container(
+        SizedBox(
           width: MediaQuery.of(context).size.width,
           height: 72,
           child: Padding(
@@ -138,186 +138,189 @@ class _PizzaWidgetState extends State<PizzaWidget> {
         child: SizedBox(
           height: 300,
           child: SafeArea(
-            child: Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Form(
-                  autovalidateMode: AutovalidateMode.always,
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: bagBoxDecoration,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            left: 8.0,
-                            right: 8,
-                            bottom: 8,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Form(
+                autovalidateMode: AutovalidateMode.always,
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: bagBoxDecoration,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: 8.0,
+                          right: 8,
+                          bottom: 8,
+                        ),
+                        child: TextFormField(
+                          key: _cardKey,
+                          controller: _cardEditingController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            LengthLimitingTextInputFormatter(16),
+                            CardNumberFormat(),
+                          ],
+                          decoration: InputDecoration(
+                            hintText: 'Номер карты',
+                            prefixIcon: Icon(Icons.credit_card_rounded),
+                            border: InputBorder.none,
                           ),
-                          child: TextFormField(
-                            key: _cardKey,
-                            controller: _cardEditingController,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly,
-                              LengthLimitingTextInputFormatter(16),
-                              CardNumberFormat(),
-                            ],
-                            decoration: InputDecoration(
-                              hintText: 'Номер карты',
-                              prefixIcon: Icon(Icons.credit_card_rounded),
-                              border: InputBorder.none,
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Введите номер карты";
-                              }
-                              return null;
-                            },
-                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Введите номер карты";
+                            }
+                            return null;
+                          },
                         ),
                       ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              decoration: bagBoxDecoration,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 4.0),
-                                child: TextFormField(
-                                  key: _cvvKey,
-                                  controller: _cvvEditingController,
-                                  keyboardType: TextInputType.number,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly,
-                                    LengthLimitingTextInputFormatter(3),
-                                  ],
-                                  decoration: InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(horizontal: 8),
-                                    hintText: 'CVV',
-                                    border: InputBorder.none,
-                                  ),
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return "Введите cvv код";
-                                    }
-                                    return null;
-                                  },
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: bagBoxDecoration,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 4.0),
+                              child: TextFormField(
+                                key: _cvvKey,
+                                controller: _cvvEditingController,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                  LengthLimitingTextInputFormatter(3),
+                                ],
+                                decoration: InputDecoration(
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 8),
+                                  hintText: 'CVV',
+                                  border: InputBorder.none,
                                 ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Введите cvv код";
+                                  }
+                                  return null;
+                                },
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Expanded(
-                            child: Container(
-                              decoration: bagBoxDecoration,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 4.0),
-                                child: TextFormField(
-                                  key: _dateKey,
-                                  controller: _dateEditingController,
-                                  keyboardType: TextInputType.number,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly,
-                                    LengthLimitingTextInputFormatter(4),
-                                    MontYearNumberFormat(),
-                                  ],
-                                  decoration: InputDecoration(
-                                    hintText: 'ММ/ГГ',
-                                    contentPadding:
-                                        EdgeInsets.symmetric(horizontal: 8),
-                                    border: InputBorder.none,
-                                  ),
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return "Введите дату";
-                                    }
-                                    return null;
-                                  },
+                        ),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Expanded(
+                          child: Container(
+                            decoration: bagBoxDecoration,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 4.0),
+                              child: TextFormField(
+                                key: _dateKey,
+                                controller: _dateEditingController,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                  LengthLimitingTextInputFormatter(4),
+                                  MontYearNumberFormat(),
+                                ],
+                                decoration: InputDecoration(
+                                  hintText: 'ММ/ГГ',
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 8),
+                                  border: InputBorder.none,
                                 ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Введите дату";
+                                  }
+                                  return null;
+                                },
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              height: 72,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text(
-                                    "Назад",
-                                    style: buttonStyle.copyWith(
-                                        color: Colors.grey.shade400),
-                                  ),
-                                  style: ButtonStyle(
-                                      shadowColor: MaterialStateProperty.all(
-                                        Colors.black.withOpacity(0.04),
-                                      ),
-                                      backgroundColor:
-                                          MaterialStateProperty.all(greyColor)),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 72,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  "Назад",
+                                  style: buttonStyle.copyWith(
+                                      color: Colors.grey.shade400),
                                 ),
+                                style: ButtonStyle(
+                                    shadowColor: MaterialStateProperty.all(
+                                      Colors.black.withOpacity(0.04),
+                                    ),
+                                    backgroundColor:
+                                        MaterialStateProperty.all(greyColor)),
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              height: 72,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    if (_cardEditingController
-                                            .text.isNotEmpty &&
-                                        _cardEditingController.text != null) {
-                                      Navigator.of(context)
-                                          .pushNamedAndRemoveUntil(
-                                              '/pizza_check_order_page',
-                                              (route) => false);
-                                    }
-                                  },
-                                  child: Text(
-                                    "Оплатить ${amountPurchase}р",
-                                    style: buttonStyle,
-                                  ),
-                                  style: ButtonStyle(
-                                      shadowColor: MaterialStateProperty.all(
-                                        Colors.black.withOpacity(0.04),
-                                      ),
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              primeryColor)),
+                        ),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            height: 72,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  print(_cardEditingController.text.length);
+                                  print(_cvvEditingController.text.length);
+                                  print(_dateEditingController.text.length);
+
+                                  if (_cardEditingController.text.isNotEmpty &&
+                                      _cardEditingController.text.length ==
+                                          22 &&
+                                      _cvvEditingController.text.isNotEmpty &&
+                                      _cvvEditingController.text.length == 3 &&
+                                      _dateEditingController.text.isNotEmpty &&
+                                      _dateEditingController.text.length == 5) {
+                                    Navigator.of(context)
+                                        .pushNamedAndRemoveUntil(
+                                            '/pizza_check_order_page',
+                                            (route) => false);
+                                  }
+                                },
+                                child: Text(
+                                  "Оплатить ${amountPurchase}р",
+                                  style: buttonStyle,
                                 ),
+                                style: ButtonStyle(
+                                    shadowColor: MaterialStateProperty.all(
+                                      Colors.black.withOpacity(0.04),
+                                    ),
+                                    backgroundColor: MaterialStateProperty.all(
+                                        primeryColor)),
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
